@@ -18,87 +18,86 @@ public class ArrayHandler {
         }
         return(targetArray);
     }
-    public void doSwap(int[] ArrayIn) { // Swaps biggest negative and lesser positive numbers in the input array
+    public void doSwap(int[] arrayIn) { // Swaps biggest negative and lesser positive numbers in the input array
         System.out.print("\nFirst Task:");
-        for (int i = 0; i < ArrayIn.length; i++) {
-            if (ArrayIn[i] < 0 && ArrayIn[i] > largestNegativeNumber) {
-                largestNegativeNumber = ArrayIn[i];
+        for (int i = 0; i < arrayIn.length; i++) {
+            if (arrayIn[i] < 0 && arrayIn[i] > largestNegativeNumber) {
+                largestNegativeNumber = arrayIn[i];
                 largestNegativeNumberIndex = i;
             }
-            if (ArrayIn[i] > 0 && ArrayIn[i] < lesserPositiveNumber) {
-                lesserPositiveNumber = ArrayIn[i];
+            if (arrayIn[i] > 0 && arrayIn[i] < lesserPositiveNumber) {
+                lesserPositiveNumber = arrayIn[i];
                 lesserPositiveNumberIndex = i;
             }
         }
-        ArrayIn[lesserPositiveNumberIndex] = largestNegativeNumber;
-        ArrayIn[largestNegativeNumberIndex] = lesserPositiveNumber;
+        arrayIn[lesserPositiveNumberIndex] = largestNegativeNumber;
+        arrayIn[largestNegativeNumberIndex] = lesserPositiveNumber;
         System.out.println();
-        for (int k = 0; k < ArrayIn.length; k++) {
-            System.out.print(ArrayIn[k] + "  ");
+        for (int k = 0; k < arrayIn.length; k++) {
+            System.out.print(arrayIn[k] + "  ");
         }
     }
 
     private int Sum;
 
-    public void doSum(int ArrayIn[]) { //Sum of numbers on even positions
+    public void doSum(int arrayIn[]) { //Sum of numbers on even positions
         System.out.println("\nSecond Task:");
-        for (int i = 0; i < ArrayIn.length; i++) {
+        for (int i = 0; i < arrayIn.length; i++) {
             if ((i + 1) % 2 == 0) {
-                Sum = Sum + ArrayIn[i];
+                Sum = Sum + arrayIn[i];
             }
         }
         System.out.print(Sum);
     }
 
-    public void doReplace(int ArrayIn[]) {
+    public void doReplace(int arrayIn[]) {
         System.out.println("\nThird Task:"); //Replaces all negative numbers in array with zeros
-        for (int i = 0; i < ArrayIn.length; i++) {
-            if (ArrayIn[i] < 0) {
-                ArrayIn[i] = 0;
+        for (int i = 0; i < arrayIn.length; i++) {
+            if (arrayIn[i] < 0) {
+                arrayIn[i] = 0;
             }
-            System.out.print(ArrayIn[i] + "  ");
+            System.out.print(arrayIn[i] + "  ");
         }
 
     }
 
-    public void doTriple(int[] ArrayIn) {
+    public void doTriple(int[] arrayIn) {
         System.out.println("\nForth Task:"); //Triple the positive numbers in array if there are negative number in the next position
-        for (int i = 0; i < ArrayIn.length - 1; i++) {
-            if (ArrayIn[i] > 0 && ArrayIn[i + 1] < 0) {
-                ArrayIn[i] = ArrayIn[i] * 3;
+        for (int i = 0; i < arrayIn.length - 1; i++) {
+            if (arrayIn[i] > 0 && arrayIn[i + 1] < 0) {
+                arrayIn[i] = arrayIn[i] * 3;
             }
-            System.out.print(ArrayIn[i] + "  ");
+            System.out.print(arrayIn[i] + "  ");
         }
     }
 
-    public void doDiff(int[] ArrayIn) {
+    public void doDiff(int[] arrayIn) {
         System.out.println("\nFifth Task:"); //Difference between array average and lesser number in array
-        int Average, Sum = 0;
-        int Lesser = ArrayIn[0];
-        for (int i = 0; i < ArrayIn.length; i++) {
-            if (ArrayIn[i] < Lesser) {
-                Lesser = ArrayIn[i];
+        int average, Sum = 0;
+        int lesser = arrayIn[0];
+        for (int i = 0; i < arrayIn.length; i++) {
+            if (arrayIn[i] < lesser) {
+                lesser = arrayIn[i];
             }
-            Sum = Sum + ArrayIn[i];
+            Sum = Sum + arrayIn[i];
         }
-        Average = Sum / ArrayIn.length;
-        System.out.print(Average + " - " + Lesser + " = " + (Average - Lesser));
+        average = Sum / arrayIn.length;
+        System.out.print(average + " - " + lesser + " = " + (average - lesser));
     }
 
-    public void doCheck(int[] ArrayIn) { //Returns repeated array elements on uneven positions
+    public void doCheck(int[] arrayIn) { //Returns repeated array elements on uneven positions
         System.out.println("\nSixth Task:");
         int count;
-        for (int i = 0; i < ArrayIn.length; i++) {
+        for (int i = 0; i < arrayIn.length; i++) {
             count = 0;
-            for (int j = 0; j < ArrayIn.length; j++) {
-                if (ArrayIn[i] == ArrayIn[j]) {
+            for (int j = 0; j < arrayIn.length; j++) {
+                if (arrayIn[i] == arrayIn[j]) {
                     count++;
                 }
             }
             if (count > 1 && (i + 1) % 2 != 0) {
-                System.out.print("Position: " + (i + 1) + " Value: " + ArrayIn[i] + "  \n");
+                System.out.print("Position: " + (i + 1) + " Value: " + arrayIn[i] + "  \n");
             }
         }
-
     }
 }
