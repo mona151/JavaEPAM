@@ -9,8 +9,7 @@
 import java.lang.Math; // for Math.random();
 
 public class ArrayHandler {
-    private int largestNegativeNumber = -10, largestNegativeNumberIndex;
-    private int lesserPositiveNumber = 10, lesserPositiveNumberIndex;
+
     public int[] doFillArray(int arraySize){
         int[] targetArray = new int[arraySize];
         for (int j = 0; j < targetArray.length; j++) { // Filling JunkArray with random numbers from [-10;10]
@@ -18,24 +17,26 @@ public class ArrayHandler {
         }
         return(targetArray);
     }
+    private int largestNegativeNumberIndex = -1;
+    private int lesserPositiveNumberIndex = -1;
+    private int swapBuffer;
     public void doSwap(int[] arrayIn) { // Swaps biggest negative and lesser positive numbers in the input array
         System.out.print("\nFirst Task:");
         for (int i = 0; i < arrayIn.length; i++) {
-            if (arrayIn[i] < 0 && arrayIn[i] > largestNegativeNumber) {
-                largestNegativeNumber = arrayIn[i];
+            if (arrayIn[i] < 0 && largestNegativeNumberIndex == -1 ||
+                    arrayIn[i] < 0 && largestNegativeNumberIndex >= 0 && arrayIn[i] > arrayIn[largestNegativeNumberIndex]) {
                 largestNegativeNumberIndex = i;
             }
-            if (arrayIn[i] > 0 && arrayIn[i] < lesserPositiveNumber) {
-                lesserPositiveNumber = arrayIn[i];
+            if (arrayIn[i] > 0 && lesserPositiveNumberIndex == -1 ||
+                    arrayIn[i] > 0 && lesserPositiveNumberIndex >= 0 && arrayIn[i] < arrayIn[lesserPositiveNumberIndex]) {
                 lesserPositiveNumberIndex = i;
             }
         }
-        arrayIn[lesserPositiveNumberIndex] = largestNegativeNumber;
-        arrayIn[largestNegativeNumberIndex] = lesserPositiveNumber;
+        swapBuffer = arrayIn[lesserPositiveNumberIndex];
+        arrayIn[lesserPositiveNumberIndex] = arrayIn[largestNegativeNumberIndex];
+        arrayIn[largestNegativeNumberIndex] = swapBuffer;
         System.out.println();
-        for (int k = 0; k < arrayIn.length; k++) {
-            System.out.print(arrayIn[k] + "  ");
-        }
+        printArray(arrayIn);
     }
 
     private int Sum;
@@ -56,32 +57,32 @@ public class ArrayHandler {
             if (arrayIn[i] < 0) {
                 arrayIn[i] = 0;
             }
-            System.out.print(arrayIn[i] + "  ");
         }
-
+        printArray(arrayIn);
     }
 
     public void doTriple(int[] arrayIn) {
-        System.out.println("\nForth Task:"); //Triple the positive numbers in array if there are negative number in the next position
+        System.out.println("\nForth Task:"); //Triple the positive numbers in array if there is negative number in the next position
         for (int i = 0; i < arrayIn.length - 1; i++) {
             if (arrayIn[i] > 0 && arrayIn[i + 1] < 0) {
                 arrayIn[i] = arrayIn[i] * 3;
             }
-            System.out.print(arrayIn[i] + "  ");
         }
+        printArray(arrayIn);
     }
 
     public void doDiff(int[] arrayIn) {
         System.out.println("\nFifth Task:"); //Difference between array average and lesser number in array
-        int average, Sum = 0;
+        double average;
+        int sum = 0;
         int lesser = arrayIn[0];
         for (int i = 0; i < arrayIn.length; i++) {
             if (arrayIn[i] < lesser) {
                 lesser = arrayIn[i];
             }
-            Sum = Sum + arrayIn[i];
+            sum = sum + arrayIn[i];
         }
-        average = Sum / arrayIn.length;
+        average = sum / arrayIn.length;
         System.out.print(average + " - " + lesser + " = " + (average - lesser));
     }
 
@@ -95,9 +96,14 @@ public class ArrayHandler {
                     count++;
                 }
             }
-            if (count > 1 && (i + 1) % 2 != 0) {
-                System.out.print("Position: " + (i + 1) + " Value: " + arrayIn[i] + "  \n");
+            if (count > 1 && (i % 2 != 0)) {
+                System.out.print("Position: " + i + " Value: " + arrayIn[i] + "  \n");
             }
+        }
+    }
+    public void printArray(int[] arrayIn){
+        for (int i = 0; i < arrayIn.length; i++) {
+            System.out.print(arrayIn[i] + "  ");
         }
     }
 }
